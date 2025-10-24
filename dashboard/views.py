@@ -1,0 +1,80 @@
+from django.shortcuts import render, redirect
+from products.models import Product, Category
+
+# Create your views here.
+def admin_home(request):
+    return render (request,'admin.html')
+
+def CategoryList(request):
+    categories = Category.objects.all()
+    context = {
+        'categories':categories
+    }
+    return render(request, 'admincategory.html',context)
+def CategoryCreate(request):
+    if request.method == "POST":
+         category= Category.objects.create(
+             name = request.POST.get('name'),
+         )
+         category.save()
+    return redirect('/dashboard/admincategory/')
+def CategoryUpdate(request, pk):
+    category  = Category.objects.get(id = pk)
+    if request.method == "POST":
+        category.name = request.POST.get('name')
+        category.save()
+        return redirect('/dashboard/admincategory/')
+def CategoryDelete(request, pk):
+    category = Category.objects.get(id = pk)
+    if request.method == "POST":
+       category.delete()
+       return redirect('/dashboard/admincategory/')
+def ProductList(request):
+    products = Product.objects.all()
+    categorise = Category.objects.all()
+    context = {
+        'products':products,
+        'categorise':categorise
+    }
+    return render(request, 'adminproduct.html', context)
+def ProductCreate(request):
+    if request.method == "POST":
+        product = Product.objects.create(
+            name = request.POST['name'],
+            # name = request.POST.get('name'),
+            price = request.POST['price'],
+            category_id  = request.POST['category'],
+            desciption = request.POST['desciption'],
+            image = request.FILES.get('image'),
+            is_sale = request.POST.get('is_sale') == "on",
+            sale_price = request.POST['sale_price']
+        )
+        product.save()
+        return redirect('/dashboard/adminproduct/')
+    
+def ProductUpdate(request, pk):
+    product = Product.objects.get(id=pk)
+    if request.method == "POST":
+        product.name = request.POST['name']
+        product.price = request.POST['price']
+        product.category_id = request.POST['category']
+        product.desciption = request.POST['desciption']
+        
+        if request.FILES.get('image'):
+            product.image = request.FILES.get('image')
+
+        product.is_sale = request.POST.get('is_sale') == "on"
+        product.sale_price = request.POST['sale_price']
+        
+        product.save()
+        return redirect('/dashboard/adminproduct/')
+    
+def ProductDelete(request, pk):
+    product = Product.objects.get(id=pk)
+    if request.method == "POST":
+        if product.image:
+            product.image.delete()
+        product.delete()
+        return redirect('/dashboard/adminproduct/')
+    
+    return render(request, 'adminproduct.html', {'product': product})
