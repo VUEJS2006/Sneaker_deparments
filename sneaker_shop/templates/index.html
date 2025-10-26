@@ -1,12 +1,80 @@
 {% extends 'base.html' %}
+
 {% block title%}Ecommerce Website{%endblock%}
 {% block content %}
 {% include 'navbar.html'%}
 
+
+</script>
+<script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+        c[a] =
+            c[a] ||
+            function () {
+                (c[a].q = c[a].q || []).push(arguments);
+            };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "kuc8w5o9nt");
+</script>
+<main>
+    <section class="mt-8">
+        <div class="container">
+            <div class="hero-slider">
+                <div
+                    style="background: url(../../media/uploads/product/hero-img-slider-1.jpg) no-repeat; background-size: cover; border-radius: 0.5rem; background-position: center">
+                    <div class="ps-lg-12 py-lg-16 col-xxl-5 col-lg-7 col-md-8 py-14 px-8 text-xs-center">
+                        <h1 class="text-white display-5 fw-bold mt-4">SuperMarket For Fresh Grocery</h1>
+                        <p class="lead text-white">Introduced a new model for online grocery shopping and convenient
+                            home delivery at any time.</p>
+                        <a href="{% url 'productlist'%}" class="btn btn-dark mt-3">
+                            Shop Now
+                            <i class="feather-icon icon-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    style="background: url(../../media/uploads/product/hero-img-slider-2.jpg) no-repeat; background-size: cover; border-radius: 0.5rem; background-position: center">
+                    <div class="ps-lg-12 py-lg-16 col-xxl-5 col-lg-7 col-md-8 py-14 px-8 text-xs-center">
+                        <h1 class="text-dark display-5 fw-bold mt-4">
+                            Opening Sale
+                            <br />
+                            Discount up to
+                            <span class="text-primary display-6">50%</span>
+                        </h1>
+                        <p class="lead">Snack on late-night munchies of delicious nuts & you’re guaranteed happiness
+                            before you doze!</p>
+                        <a href="{% url 'productlist'%}" class="btn btn-dark mt-3">
+                            Shop Now
+                            <i class="feather-icon icon-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    style="background: url(../../media/uploads/product/hero-img-slider-3.jpg) no-repeat; background-size: cover; border-radius: 0.5rem; background-position: center">
+                    <div class="ps-lg-12 py-lg-16 col-xxl-5 col-lg-7 col-md-8 py-14 px-8 text-xs-center">
+                        <h1 class="text-dark display-5 fw-bold mt-4">Midnight Munch Combo</h1>
+                        <p class="lead">Snack on late-night munchies of delicious nuts & you’re guaranteed happiness
+                            before you doze!</p>
+                        <a href="{% url 'productlist'%}" class="btn btn-dark mt-3">
+                            Shop Now
+                            <i class="feather-icon icon-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 
 
 
 
 {% include 'footer.html' %}
+
+
 {% endblock %}

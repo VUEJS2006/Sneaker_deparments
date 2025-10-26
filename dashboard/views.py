@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from products.models import Product, Category
-
+from django.contrib.auth.models import User
 # Create your views here.
 def admin_home(request):
     return render (request,'admin.html')
@@ -78,3 +78,14 @@ def ProductDelete(request, pk):
         return redirect('/dashboard/adminproduct/')
     
     return render(request, 'adminproduct.html', {'product': product})
+def UserLogin(request):
+    users = User.objects.all()
+    context = {
+        'users':users
+    }
+    return render(request, 'authentication.html', context)
+def UserLoginDelete(request, pk):
+      if request.method == "POST":
+        user = User.objects.get(id = pk)
+        user.delete()
+        return redirect('/dashboard/authentication/')

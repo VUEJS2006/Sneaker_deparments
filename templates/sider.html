@@ -1,4 +1,8 @@
 {% load static %}
+<link href="{% static 'libs/bootstrap-icons/font/bootstrap-icons.min.css'%}" rel="stylesheet">
+<link href="{% static 'libs/feather-webfont/dist/feather-icons.css' %}" rel="stylesheet">
+<link href="{% static 'libs/simplebar/dist/simplebar.min.css'%}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/theme.min.css'%}">
 <div>
 	<nav class="navbar navbar-expand-lg navbar-glass">
 		<div class="container-fluid">
@@ -13,7 +17,7 @@
 						</svg>
 					</a>
 
-					
+
 				</div>
 				<div>
 					<ul class="list-unstyled d-flex align-items-center mb-0 ms-5 ms-lg-0">
@@ -135,31 +139,24 @@
 							</div>
 						</li>
 						<li class="dropdown ms-4">
-							<a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="../assets/images/avatar/avatar-1.jpg" alt=""
+							<a href="{% url 'dashboard' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="#" alt=""
 									class="avatar avatar-md rounded-circle" />
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end p-0">
 								<div class="lh-1 px-5 py-4 border-bottom">
-									<h5 class="mb-1 h6">FreshCart Admin</h5>
-									<small>admindemo@email.com</small>
+									<h5 class="mb-1 h6">{{user.username}}</h5>
+									<small>{{user.email}}</small>
 								</div>
 
 								<ul class="list-unstyled px-2 py-3">
 									<li>
-										<a class="dropdown-item" href="#!">Home</a>
-									</li>
-									<li>
 										<a class="dropdown-item" href="#!">Profile</a>
-									</li>
-
-									<li>
-										<a class="dropdown-item" href="#!">Settings</a>
 									</li>
 								</ul>
 								<div class="border-top px-5 py-3">
-									<a href="#">Log Out</a>
+									<a href="{% url 'logout'%}">Log Out</a>
 								</div>
 							</div>
 						</li>
@@ -232,10 +229,10 @@
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link " href="vendor-grid.html">
+							<a class="nav-link " href="{% url 'authentication'%}">
 								<div class="d-flex align-items-center">
 									<span class="nav-link-icon"><i class="bi bi-shop"></i></span>
-									<span class="nav-link-text">Sellers / Vendors</span>
+									<span class="nav-link-text">Authentication</span>
 								</div>
 							</a>
 						</li>
@@ -647,3 +644,11 @@
 		</nav>
 	</div>
 </div>
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
+
+<!-- Theme JS -->
+<script src="{% static 'js/theme.min.js' %}"></script>
+
+<script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+<script src="{% static 'js/vendors/chart.js' %}"></script>

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Product Page{% endblock %}
 
+{% block title %}Product Page{% endblock %}
 {% block content %}
 {% include 'navbar.html'%}
+
+
 
 
 
@@ -41,15 +43,7 @@
                   <img src="{{product.image.url}}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
                 </a>
                 <!-- action btn -->
-                <div class="card-product-action">
-                  <a href="{% url 'productdetail' product.id %}" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                    <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
-                  </a>
-                  <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                    title="Wishlist"><i class="bi bi-heart"></i></a>
-                  <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Compare"><i
-                      class="bi bi-arrow-left-right"></i></a>
-                </div>
+
               </div>
               <!-- heading -->
 
@@ -77,14 +71,9 @@
                 </div>
                 <!-- btn -->
                 <div>
-                  <a href="#!" class="btn btn-primary btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-plus">
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                    Add
+                  <a href="{% url 'productdetail' product.id%}" class="btn btn-primary btn-sm">
+
+                    View Product
                   </a>
                 </div>
               </div>
@@ -105,16 +94,7 @@
                   <!-- img -->
                   <img src="{{product.image.url}}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
                 </a>
-                <!-- action btn -->
-                <div class="card-product-action">
-                  <a href="{% url 'productdetail' product.id %}" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                    <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
-                  </a>
-                  <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                    title="Wishlist"><i class="bi bi-heart"></i></a>
-                  <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Compare"><i
-                      class="bi bi-arrow-left-right"></i></a>
-                </div>
+
               </div>
               <!-- heading -->
 
@@ -142,8 +122,13 @@
 
                 </div>
 
-                <!-- btn -->
-              
+                <div>
+                  <a href="{% url 'productdetail' product.id%}" class="btn btn-primary btn-sm">
+
+                    View Product
+                  </a>
+                </div>
+
               </div>
             </div>
           </div>
@@ -161,4 +146,5 @@
 </main>
 
 {% include 'footer.html' %}
+
 {% endblock %}
