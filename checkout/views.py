@@ -1,5 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-# Create your views here.
-def checkout_home(request):
-    return render(request,'checkout_home.html')
+def Checkout(request):
+    return render(request,'checkout.html')
