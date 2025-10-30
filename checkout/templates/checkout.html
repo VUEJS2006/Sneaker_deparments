@@ -15,157 +15,191 @@
                     <!-- card body -->
                     <div class="card-body p-6">
                         <h4 class="mb-4 h5">Your Information</h4>
-                        <div class="row">
-                            <!-- input -->
-                            <div class="mb-3 col-lg-6">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" class="form-control" placeholder="Enter Full Name" required />
-                            </div>
-                            <!-- input -->
-                            <div class="mb-3 col-lg-6">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Email" required />
-                            </div>
-                            <div class="mb-3 col-lg-6">
+                        <form action="{%url 'placeorder' %}" method="POST" enctype="multipart/form-data">
+                           {% csrf_token %}
+                            <div class="row">
+                                <div class="mb-3 col-lg-6">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter  Name" required
+                                        name="fullname" />
+                                </div>
 
-                                <label class="form-label">City</label>
-                                <input type="text" class="form-control" placeholder="Enter City" required />
+                                <!-- input -->
+                                <div class="mb-3 col-lg-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="Enter Email" required
+                                        name="email" />
+                                </div>
 
-                            </div>
-                            <div class="mb-3 col-lg-6">
+                                <div class="mb-3 col-lg-6">
 
-                                <label class="form-label">State</label>
-                                <input type="text" class="form-control" placeholder="Enter State" required />
+                                    <label class="form-label">Country</label>
+                                    <input type="text" class="form-control" placeholder="Enter Country" required
+                                        name="country" />
 
-                            </div>
-                            <div class="mb-3 col-lg-6">
+                                </div>
 
-                                <label class="form-label">Payment Success</label>
-                                <input type="file" class="form-control" placeholder="Enter Payment" required />
+                                <div class="mb-3 col-lg-6">
 
-                            </div>
-                            <div class="mb-3 col-lg-6">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" placeholder="Enter City" required
+                                        name="city" />
 
-                                <label class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" required />
+                                </div>
+                                <div class="mb-3 col-lg-6">
 
-                            </div>
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" placeholder="Enter State" required
+                                        name="state" />
 
-                            <div class="mb-3 col-lg-6">
-                                <label class="form-label">Address</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter Address"
-                                    style="resize: none; height: 70px;"></textarea>
-                            </div>
-                            <div class="mb-3 col-lg-6 mt-4">
+                                </div>
+                                <div class="mb-3 col-lg-6">
 
-                                <label class="form-label">Sneaker Size</label>
-                                <input type="text" class="form-control" placeholder="Size 39 to 44" required />
+                                    <label class="form-label">Payment Success</label>
+                                    <input type="file" class="form-control" placeholder="Enter Payment" required
+                                        name="image" />
 
-                            </div>
-                            <div class="accordion-item py-4 mt-3 rounded">
-                                <a href="#" class="text-inherit h5" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseFour" aria-expanded="false"
-                                    aria-controls="flush-collapseFour">
-                                    <i class="feather-icon icon-credit-card me-2 text-muted"></i>
-                                    Payment Method &nbsp;<span><i class="bi bi-chevron-down"></i></span>
-                                    <!-- collapse -->
-                                </a>
-                                <div id="flush-collapseFour" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionFlushExample">
-                                    <div class="mt-5">
-                                        <div>
-                                            <!-- Kpay -->
-                                            <div class="card card-bordered shadow-none mb-2">
-                                                <!-- card body -->
-                                                <div class="card-body p-6">
-                                                    <div class="d-flex">
-                                                        <div class="form-check mt-2">
-                                                            <!-- checkbox -->
-                                                            <input class="form-check-input" type="radio"
-                                                                name="flexRadioDefault" id="paypal" />
-                                                            <label class="form-check-label ms-2" for="paypal"></label>
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="mb-1 h6">KPay<img
-                                                                    src="../../media/uploads/product/kpay.png" alt=""
-                                                                    width="80px"> <span>+959 794389405</span></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Wave -->
-                                            <div class="card card-bordered shadow-none mb-2">
-                                                <!-- card body -->
-                                                <div class="card-body p-6">
-                                                    <div class="d-flex">
-                                                        <div class="form-check mt-2">
-                                                            <!-- checkbox -->
-                                                            <input class="form-check-input" type="radio"
-                                                                name="flexRadioDefault" id="paypal" />
-                                                            <label class="form-check-label ms-2" for="paypal"></label>
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="mb-1 h6">Yoma<img
-                                                                    src="../../media/uploads/product/Yoma (2).png"
-                                                                    alt="" width="80px"> <span>+959 685774940</span>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Wave -->
-                                            <div class="card card-bordered shadow-none mb-2">
-                                                <!-- card body -->
-                                                <div class="card-body p-6">
-                                                    <div class="d-flex">
-                                                        <div class="form-check mt-2">
-                                                            <!-- checkbox -->
-                                                            <input class="form-check-input" type="radio"
-                                                                name="flexRadioDefault" id="paypal" />
-                                                            <label class="form-check-label ms-2" for="paypal"></label>
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="mb-1 h6">Wave<img
-                                                                    src="../../media/uploads/product/wave.png" alt=""
-                                                                    width="80px"> <span>+959 794389405</span></h5>
+                                </div>
+                                <div class="mb-3 col-lg-6 mt-4">
+
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" placeholder="Enter Phone Number" required
+                                        name="phone" />
+
+                                </div>
+
+                                <div class="mb-3 col-lg-6">
+                                    <label class="form-label">Address</label>
+                                    <textarea class="form-control" rows="3" placeholder="Enter Address" name="address"
+                                        style="resize: none; height: 70px;"></textarea>
+                                </div>
+                                <div class="mb-3 col-lg-6 mt-4">
+
+                                    <label class="form-label">Sneaker Size</label>
+                                    <input type="text" class="form-control" placeholder="Size 39 to 44" required
+                                        name="size" />
+
+
+                                </div>
+                                <div class="mb-3 col-lg-6 mt-4">
+
+                                    <label class="form-label">Pin Code</label>
+                                    <input type="number" class="form-control" placeholder="Enter Pin Code" required
+                                        name="pincode" />
+
+                                </div>
+                                <div class="accordion-item py-4 mt-3 rounded">
+                                    <a href="#" class="text-inherit h5" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                        aria-controls="flush-collapseFour">
+                                        <i class="feather-icon icon-credit-card me-2 text-muted"></i>
+                                        Payment Method &nbsp;<span><i class="bi bi-chevron-down"></i></span>
+                                        <!-- collapse -->
+                                    </a>
+                                    <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="mt-5">
+                                            <div>
+                                                <!-- Kpay -->
+                                                <div class="card card-bordered shadow-none mb-2">
+                                                    <!-- card body -->
+                                                    <div class="card-body p-6">
+                                                        <div class="d-flex">
+                                                            <div class="form-check mt-2">
+                                                                <!-- checkbox -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="payment_choices" id="paypal" />
+                                                                <label class="form-check-label ms-2"
+                                                                    for="paypal"></label>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-1 h6">KPay<img
+                                                                        src="../../media/uploads/product/kpay.png"
+                                                                        alt="" width="80px"> <span>+959 794389405</span>
+                                                                </h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- UAB -->
-                                            <div class="card card-bordered shadow-none mb-2">
-                                                <!-- card body -->
-                                                <div class="card-body p-6">
-                                                    <div class="d-flex">
-                                                        <div class="form-check mt-2">
-                                                            <!-- checkbox -->
-                                                            <input class="form-check-input" type="radio"
-                                                                name="flexRadioDefault" id="paypal" />
-                                                            <label class="form-check-label ms-2" for="paypal"></label>
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="mb-1 h6">UAB &nbsp; &nbsp; &nbsp;<img
-                                                                    src="../../media/uploads/product/UAB.png" alt=""
-                                                                    width="60px"> <span>+959 685774940</span></h5>
+                                                <!-- Wave -->
+                                                <div class="card card-bordered shadow-none mb-2">
+                                                    <!-- card body -->
+                                                    <div class="card-body p-6">
+                                                        <div class="d-flex">
+                                                            <div class="form-check mt-2">
+                                                                <!-- checkbox -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="payment_choices" id="paypal" />
+                                                                <label class="form-check-label ms-2"
+                                                                    for="paypal"></label>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-1 h6">Yoma<img
+                                                                        src="../../media/uploads/product/Yoma (2).png"
+                                                                        alt="" width="80px"> <span>+959 685774940</span>
+                                                                </h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- Aye -->
-                                            <div class="card card-bordered shadow-none mb-2">
-                                                <!-- card body -->
-                                                <div class="card-body p-6">
-                                                    <div class="d-flex">
-                                                        <div class="form-check mt-2">
-                                                            <!-- checkbox -->
-                                                            <input class="form-check-input" type="radio"
-                                                                name="flexRadioDefault" id="paypal" />
-                                                            <label class="form-check-label ms-2" for="paypal"></label>
+                                                <!-- Wave -->
+                                                <div class="card card-bordered shadow-none mb-2">
+                                                    <!-- card body -->
+                                                    <div class="card-body p-6">
+                                                        <div class="d-flex">
+                                                            <div class="form-check mt-2">
+                                                                <!-- checkbox -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="payment_choices" id="paypal" />
+                                                                <label class="form-check-label ms-2"
+                                                                    for="paypal"></label>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-1 h6">Wave<img
+                                                                        src="../../media/uploads/product/wave.png"
+                                                                        alt="" width="80px"> <span>+959 794389405</span>
+                                                                </h5>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <h5 class="mb-1 h6">Ayeya &nbsp; &nbsp; &nbsp;<img
-                                                                    src="../../media/uploads/product/Aye.png" alt=""
-                                                                    width="40px"> <span>+959 450506220</span></h5>
+                                                    </div>
+                                                </div>
+                                                <!-- UAB -->
+                                                <div class="card card-bordered shadow-none mb-2">
+                                                    <!-- card body -->
+                                                    <div class="card-body p-6">
+                                                        <div class="d-flex">
+                                                            <div class="form-check mt-2">
+                                                                <!-- checkbox -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="payment_choices" id="paypal" />
+                                                                <label class="form-check-label ms-2"
+                                                                    for="paypal"></label>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-1 h6">UAB &nbsp; &nbsp; &nbsp;<img
+                                                                        src="../../media/uploads/product/UAB.png" alt=""
+                                                                        width="60px"> <span>+959 685774940</span></h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Aye -->
+                                                <div class="card card-bordered shadow-none mb-2">
+                                                    <!-- card body -->
+                                                    <div class="card-body p-6">
+                                                        <div class="d-flex">
+                                                            <div class="form-check mt-2">
+                                                                <!-- checkbox -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="payment_choices" id="paypal" />
+                                                                <label class="form-check-label ms-2"
+                                                                    for="paypal"></label>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-1 h6">AYA&nbsp; &nbsp; &nbsp;<img
+                                                                        src="../../media/uploads/product/Aye.png" alt=""
+                                                                        width="40px"> <span>+959 450506220</span></h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -173,16 +207,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button
+                                    class="btn btn-primary btn-lg d-flex justify-content-between align-items-center mt-4"
+                                    type="submit">
+                                    Order Now
+                                </button>
                             </div>
-                            <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center mt-4"
-                                type="submit">
-                                Go to Checkout
-                            </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-12">
+            <div class="col-lg-4 col-12 mt-5">
                 <!-- card -->
                 <div class="card mb-6 card-lg">
                     <!-- card body -->
@@ -192,59 +227,40 @@
                         <h5 class="px-6 py-4 bg-transparent mb-0">Order Details</h5>
                         <ul class="list-group list-group-flush">
                             <!-- list group item -->
+
+                            {% for cartitem in cartitems %}
                             <li class="list-group-item px-4 py-3">
                                 <div class="row align-items-center">
                                     <div class="col-2 col-md-2">
-                                        <img src="../../media/uploads/product/martin-removebg-preview.png"
-                                            alt="Ecommerce" class="img-fluid" />
+                                        <img src="{{cartitem.product.image.url}}" alt="Ecommerce" class="img-fluid" />
                                     </div>
                                     <div class="col-5 col-md-5">
-                                        <h6 class="mb-0">Hello World</h6>
+                                        <h6 class="mb-0">{{cartitem.product.name}}</h6>
                                     </div>
                                     <div class="col-2 col-md-2 text-center text-muted">
-                                        <span>1</span>
+                                        <span>{{cartitem.quantity}}</span>
                                     </div>
                                     <div class="col-3 text-lg-end text-start text-md-end col-md-3">
-                                        <span class="fw-bold">$5.00</span>
+                                        <span class="fw-bold">{{cartitem.total_price}}</span>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item px-4 py-3">
-                                <div class="row align-items-center">
-                                    <div class="col-2 col-md-2">
-                                        <img src="../../media/uploads/product/Coverse-removebg-preview.png"
-                                            alt="Ecommerce" class="img-fluid" />
-                                    </div>
-                                    <div class="col-5 col-md-5">
-                                        <h6 class="mb-0">Hello World</h6>
-                                    </div>
-                                    <div class="col-2 col-md-2 text-center text-muted">
-                                        <span>1</span>
-                                    </div>
-                                    <div class="col-3 text-lg-end text-start text-md-end col-md-3">
-                                        <span class="fw-bold">$5.00</span>
-                                    </div>
-                                </div>
+                            {% empty %}
+                            <li class="list-group-item">Your cart is empty.</li>
+                            {% endfor %}
+
+
+                            <li class="list-group-item d-flex justify-content-between fw-bold">
+                                <span>Service Fee</span>
+                                <span id="cart-total">${{ service_fee}}/-</span>
                             </li>
-                              <li class="list-group-item px-4 py-3">
-                                <div class="row align-items-center">
-                                    <div class="col-2 col-md-2">
-                                        <img src="../../media/uploads/product/nike.jpg"
-                                            alt="Ecommerce" class="img-fluid" />
-                                    </div>
-                                    <div class="col-5 col-md-5">
-                                        <h6 class="mb-0">Hello World</h6>
-                                    </div>
-                                    <div class="col-2 col-md-2 text-center text-muted">
-                                        <span>1</span>
-                                    </div>
-                                    <div class="col-3 text-lg-end text-start text-md-end col-md-3">
-                                        <span class="fw-bold">$5.00</span>
-                                    </div>
-                                </div>
+                            <li class="list-group-item d-flex justify-content-between fw-bold">
+                                <span>Grand Total</span>
+                                <span id="cart-total">${{ grand_total}}/-</span>
                             </li>
 
                         </ul>
+
                     </div>
                 </div>
                 <!-- card -->

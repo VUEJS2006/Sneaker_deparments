@@ -14,7 +14,8 @@
                             <div class="row align-items-center">
                                 <div class="col-6 col-md-6 col-lg-7">
                                     <div class="d-flex">
-                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="icon-shape icon-xxl" />
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                            class="icon-shape icon-xxl" />
                                         <div class="ms-3">
                                             <a href="{% url 'productdetail' item.product.id %}">
                                                 <h6 class="mb-0">{{ item.product.name }}</h6>
@@ -23,11 +24,18 @@
                                     </div>
                                 </div>
                                 <div class="col-4 col-md-4 col-lg-3">
-                                    <input type="number" min="0" max="100" value="{{ item.quantity }}" 
-                                           name="quantity-{{ item.id }}" class="form-control form-control-sm quantity-field" />
+                                    <div class="input-group input-spinner">
+                                        
+                                        <input type="number" step="1" max="10" value="{{item.quantity}}" name="quantity"
+                                            class="quantity-field form-control-sm form-input" />
+                                       
+                                    </div>
                                 </div>
+
                                 <div class="col-2 text-end">
                                     <span class="fw-bold item-total">${{ item.total_price }}</span>
+                                    <a href="{% url 'remove_from_cart' item.id %}"
+                                        class="btn btn-sm btn-danger mt-1">✕</a>
                                 </div>
                             </div>
                         </li>
@@ -35,6 +43,9 @@
                         <li class="list-group-item">Your cart is empty.</li>
                         {% endfor %}
                     </ul>
+                     <div class="d-flex justify-content-between mt-4">
+                  <a href="{% url 'productlist' %}" class="btn btn-primary">Continue Shopping</a>
+               </div>
                 </div>
 
                 <div class="col-lg-4 col-md-5">
@@ -55,43 +66,67 @@
                                     <span id="cart-total">${{ cart_total }}</span>
                                 </li>
                             </ul>
+                            <div class="d-grid mt-4">
+                                <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg">
+                                    Go To Checkout
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 </main>
 
 <script>
-document.querySelectorAll('.quantity-field').forEach(input => {
-    input.addEventListener('change', function() {
-        const itemId = this.name.split('-')[1];
-        let quantity = parseInt(this.value);
-        if(quantity < 0) quantity = 0;
-        if(quantity > 100) quantity = 100;
+    document.querySelectorAll('.quantity-field').forEach(input => {
+        input.addEventListener('change', function () {
+            const itemId = this.name.split('-')[1];
+            let quantity = parseInt(this.value) || 0;
+            if (quantity < 0) quantity = 0;
+            if (quantity > 100) quantity = 100;
 
-        fetch("{% url 'update_cart' %}", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}",
-            },
-            body: JSON.stringify({
-                item_id: itemId,
-                quantity: quantity
+            fetch("{% url 'update_cart'%}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({
+                    item_id: itemId,
+                    quantity: quantity
+                })
             })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                const li = document.querySelector(`li[data-item-id="${itemId}"]`);
-                li.querySelector('.item-total').innerText = `$${data.item_total}`;
-                document.getElementById('cart-subtotal').innerText = `$${data.cart_subtotal}`;
-                document.getElementById('cart-total').innerText = `$${data.cart_total}`;
-            }
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        const li = document.querySelector(`li[data-item-id="${itemId}"]`);
+                        li.querySelector('.item-total').innerText = `$${data.item_total}`;
+                        document.getElementById('cart-subtotal').innerText = `$${data.cart_subtotal}`;
+                        document.getElementById('cart-total').innerText = `$${data.cart_total}`;
+                    }
+                });
         });
     });
-});
+
+    // + / - buttons
+    document.querySelectorAll('.plus-btn, .minus-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = this.parentElement.querySelector('.quantity-field');
+            let quantity = parseInt(input.value) || 1;
+
+            if (this.classList.contains('plus-btn') && quantity < 100) {
+                quantity++;
+            } else if (this.classList.contains('minus-btn') && quantity > 0) {
+                quantity--;
+            }
+
+            input.value = quantity;
+            input.dispatchEvent(new Event('change'));
+        });
+    });
 </script>
+
 {% endblock %}

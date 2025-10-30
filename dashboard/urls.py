@@ -17,8 +17,9 @@ urlpatterns = [
     path('authentication/', views.UserLogin,name='authentication'),
     path('authentication/delete/<int:pk>', views.UserLoginDelete, name='authentication_delete'),
     
-    
-
-    
+    path('slider/', views.SliderHome, name='slider'),
+    path('slider/create/', views.SliderCreate, name='slidercreate'),
+    path('slider/update/<int:pk>', views.SliderUpdate, name="sliderupdate"),
+    path('slider/delete/<int:pk>', views.SliderDelete, name='sliderdelete'),
 
 ]

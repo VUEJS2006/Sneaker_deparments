@@ -1,8 +1,13 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from dashboard.models import Notification
+from . models import Slider
 def homePage(request):
-    return render(request, 'index.html')
+    sliders = Slider.objects.all()
+    c = {
+        'sliders':sliders
+    }
+    return render(request, 'index.html',c)
 def About(request):
     return render(request, 'about.html')
 def UserMessage(request):

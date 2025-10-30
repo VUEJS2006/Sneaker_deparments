@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Category{% endblock %}
+{% load static %}
+
+{% block content %}
+{% include 'sider.html'%}
+
+<div class="main-wrapper" style="margin-left: 300px;">
+
+    <main class="main-content-wrapper">
+        <div class="container">
+            <!-- row -->
+            <div class="row mb-8">
+                <div class="col-md-12">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+                        <!-- pageheader -->
+                        <div>
+                            <h2>Slider Deparment</h2>
+                            <!-- breacrumb -->
+                        </div>
+                        <!-- button -->
+                        <div>
+                            <a href="{% url 'slidercreate'%}" class="btn btn-success">Create Slider</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-12 mb-5">
+                    <!-- card -->
+                    <div class="card h-100 card-lg">
+                        <div class="px-6 py-6">
+                            <div class="row justify-content-between">
+                                <div class="col-lg-4 col-md-6 col-12 mb-2 mb-md-0">
+                                    <!-- form -->
+                                    <form class="d-flex" role="search">
+                                        <input class="form-control" type="search" placeholder="Search Category"
+                                            aria-label="Search" />
+                                    </form>
+                                </div>
+                                <!-- select option -->
+
+                            </div>
+                        </div>
+                        <!-- card body -->
+                        <div class="card-body p-0">
+                            <!-- table -->
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-centered table-hover mb-0 text-nowrap table-borderless table-with-checkbox">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Created_at</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for slider in sliders %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            {% if slider.image%}
+                                            <td>
+                                                <img src="{{slider.image.url}}" alt="dd" width="100px">
+                                            </td>
+                                            {% endif %}
+                                            <td>{{slider.sli_name}}</td>
+                                            <td>{{slider.sli_description | truncatechars:8}}</td>
+                                            <td>{{slider.created_at}}</td>
+                                            <td>
+                                                <button class="btn btn-success" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal_{{slider.id}}">Update</button>
+
+                                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal_{{slider.id}}">Delete</button>
+
+
+
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                            </div>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div
+                        class="border-top d-flex justify-content-between align-items-md-center px-6 py-6 flex-md-row flex-column gap-4">
+                        <span>Showing 1 to 8 of 12 entries</span>
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <li class="page-item disabled"><a class="page-link" href="#!">Previous</a></li>
+                                <li class="page-item"><a class="page-link active" href="#!">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#!">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- Upddate -->
+ {% for slider in sliders %}
+ <div class="modal fade" id="updateModal_{{ slider.id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Update Slider</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{% url 'sliderupdate' slider.id%}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" class="form-control" name="sli_name" value="{{ slider.sli_name }}">
+                    </div>
+                    <div class="mb-3 text-start">
+                        <label class="col-form-label">Current Image</label><br>
+                        {% if product.image %}
+                        <img src="{{ slider.image.url }}" width="80px">
+                        {% endif %}
+                        <input type="file" name="image" class="form-control mt-2">
+                    </div>
+                 
+                    <div class="mb-3 text-start">
+                        <label class="col-form-label">Description</label>
+                        <textarea style="resize: none; height: 80px;" class="form-control" name="sli_description">{{ slider.sli_description }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- Delete -->
+ {% for slider in sliders %}
+<div class="modal fade" id="deleteModal_{{ slider.id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Delete Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{% url 'sliderdelete' slider.id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    Are you sure you want to delete <strong>{{ slider.sli_name }}</strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ {% endfor %}
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+
+<script src="{% static 'js/theme.min.js'%}"></script>
+
+{% endblock %}

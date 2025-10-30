@@ -52,10 +52,7 @@ def cart_view(request):
 
 
 @login_required
-def update_cart(request):
-    """
-    AJAX + JSON version for quantity update and subtotal/total refresh
-    """
+def update_cart(request,):
     if request.method == "POST":
         try:
             data = json.loads(request.body)

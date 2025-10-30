@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from products.models import Product, Category
 from django.contrib.auth.models import User
+from sneaker_shop.models import Slider
+from django.contrib import messages
 # Create your views here.
 def admin_home(request):
     return render (request,'admin.html')
@@ -17,6 +19,7 @@ def CategoryCreate(request):
              name = request.POST.get('name'),
          )
          category.save()
+         messages.info(request, 'Product Create Successfully')
     return redirect('/dashboard/admincategory/')
 def CategoryUpdate(request, pk):
     category  = Category.objects.get(id = pk)
@@ -89,3 +92,37 @@ def UserLoginDelete(request, pk):
         user = User.objects.get(id = pk)
         user.delete()
         return redirect('/dashboard/authentication/')
+def SliderHome(request):
+     sliders = Slider.objects.all()
+     context = {
+         'sliders':sliders
+     }
+     return render(request, 'slider.html', context)
+def SliderCreate(request):
+    if request.method == "GET":
+        return render(request, 'slidercreate.html')
+    if request.method == "POST":
+     slider = Slider.objects.create(
+        sli_name = request.POST['name'],
+        image = request.FILES.get('image'),
+        sli_description = request.POST['description']
+     )
+     slider.save()
+    return redirect('/dashboard/slider/')
+def SliderUpdate(request, pk):
+    slider = Slider.objects.get(id = pk)
+    if request.method == "POST":
+        slider.sli_name = request.POST.get('sli_name'),
+        if request.FILES.get('image'):
+           slider.image = request.FILES.get('image'),
+        slider.sli_description = request.POST.get('sli_description'),
+        slider.save()
+        
+    return redirect('/dashboard/slider/')
+def SliderDelete(request, pk):
+     slider = Slider.objects.get(id = pk)
+     if request.method == "POST":
+        if slider.image:
+            slider.image.delete()
+        slider.delete()
+     return redirect('/dashboard/slider/')
