@@ -30,7 +30,7 @@ def PlaceOrder(request):
      neworder = Order()
      neworder.user = request.user 
      neworder.fullname = request.POST['fullname']
-     neworder.payment_method = request.POST['payment_choices']
+     neworder.payment_method = request.POST['payment_method']
      neworder.email = request.POST['email']
      neworder.phone = request.POST['phone']
      neworder.image = request.FILES.get('image')

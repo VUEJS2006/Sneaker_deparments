@@ -22,4 +22,8 @@ urlpatterns = [
     path('slider/update/<int:pk>', views.SliderUpdate, name="sliderupdate"),
     path('slider/delete/<int:pk>', views.SliderDelete, name='sliderdelete'),
 
+    path('admin_order/', views.AdminOrder, name='admin_order'),
+    path('admin_order/delete/<int:pk>', views.OrderDelete, name='order_delete'),
+    path('admin_orderitem', views.OrderItems, name='admin_orderitem')
+
 ]

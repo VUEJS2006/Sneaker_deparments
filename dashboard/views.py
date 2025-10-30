@@ -3,6 +3,7 @@ from products.models import Product, Category
 from django.contrib.auth.models import User
 from sneaker_shop.models import Slider
 from django.contrib import messages
+from checkout.models import Order,OrderItem
 # Create your views here.
 def admin_home(request):
     return render (request,'admin.html')
@@ -126,3 +127,22 @@ def SliderDelete(request, pk):
             slider.image.delete()
         slider.delete()
      return redirect('/dashboard/slider/')
+def AdminOrder(request):
+    orders = Order.objects.all()
+    context = {
+        'orders':orders
+    }
+    return render(request, 'admin_order.html', context)
+def OrderDelete(request, pk):
+    order = Order.objects.get(id = pk)
+    if request.method == "POST":
+       if order.image:
+           order.image.delete()
+       order.delete()
+    return redirect('/dashboard/admin_order/')
+def OrderItems(request):
+    orderitems = OrderItem.objects.all()
+    context = {
+        'orderitems':orderitems
+    }
+    return render(request, 'admin_orderitem.html', context)
