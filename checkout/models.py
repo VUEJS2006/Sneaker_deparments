@@ -24,7 +24,7 @@ class Order(models.Model):
     payment_method = models.CharField(max_length=20,choices=payment_choices,default='kpay')
     order_status = [
         ('Pending','Pending'),
-        ('Out For Shipping','Out For Shipping'),
+        ('Cancel','Cancel'),
         ('Complete','Complete'),
     ]
     status = models.CharField(max_length=100, choices=order_status,default='Pending')
@@ -36,7 +36,8 @@ class Order(models.Model):
         return '{} - {}'.format(self.id, self.tracking_no)
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     quantity = models.PositiveIntegerField(default=1)

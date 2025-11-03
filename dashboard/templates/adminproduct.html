@@ -6,7 +6,7 @@
 {% block content %}
 {% include 'sider.html'%}
 
-<div class="main-wrapper" style="margin-left: 300px;">
+<div class="main-wrapper" style="margin-left: 260px;">
 
     <main class="main-content-wrapper">
         <div class="container">
@@ -73,20 +73,20 @@
                                                 <span
                                                     class="{% if product.is_sale %}badge bg-success{% else %} badge bg-danger{% endif %}">
                                                     {% if product.is_sale%}
-                                                    {{product.sale}}Stock Avaliable
+                                                    {{product.sale}}Get
                                                     {% else %}
-                                                    {{product.sale}}Stock Unavaliable
+                                                    {{product.sale}}No Get
                                                     {% endif %}
                                                 </span>
                                             </td>
                                             <td>
                                                 {% if product.image %}
-                                                <img src="{{product.image.url}}" alt="" width="80px">
+                                                <img src="{{product.image.url}}" alt="" width="50">
                                                 {% endif %}
                                             </td>
                                             <td>${{product.price}}/-</td>
                                             <td>${{product.sale_price}}/-</td>
-                                            <td> {{product.desciption | truncatechars:10}}</td>
+                                            <td> {{product.desciption | truncatechars:8}}</td>
                                             <td>
                                                  <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal_{{ product.id }}">Update</button>
                                                  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ product.id }}">Delete</button>

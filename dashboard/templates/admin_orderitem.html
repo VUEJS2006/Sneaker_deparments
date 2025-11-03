@@ -42,15 +42,15 @@
 									<thead class="bg-light">
 										<tr>
 											<th>No</th>
-                                            <th>Date</th>
-											<th>Product Name</th>
-											<th>Product Image</th>
-											<th>Quantity</th>
-											<th>Product Price</th>
-                                            <th>Total Price</th>
-                                            <th>Order UserName</th>
-                                            <th>Order Email</th>
-                                            <th>Order Phone</th>
+                                        
+											<th>Name</th>
+											<th>Image</th>
+											<th>Qty</th>
+											<th>Price</th>
+                                            <th>TotalPrice</th>
+                                            <th>PinCode</th>
+                                            <th>Email</th>
+                                            <th>Size</th>
                                             <th>Action</th>
 											
 										</tr>
@@ -59,15 +59,15 @@
 										{% for orderitem in orderitems %}
 										<tr>
 											<td>{{forloop.counter}}</td>
-                                            <td>{{orderitem.order.created_at}}</td>
+											
 											<td>{{orderitem.product.name}}</td>
 											<td><img src="{{orderitem.product.image.url}}" alt="" width="50"></td>
 											<td>{{orderitem.quantity}}</td>
                                             <td>${{orderitem.price}}/-</td>
                                             <td>${{orderitem.order.total_price}}/-</td>
-											<td>{{orderitem.order.fullname}}</td>
+											<td>{{orderitem.order.pincode}}</td>
                                             <td>{{orderitem.order.email}}</td>
-                                            <td>{{orderitem.order.phone}}</td>
+                                            <td>{{orderitem.order.size}}</td>
 											<td>
 												   <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ order.id }}">Delete</button>
 											</td>

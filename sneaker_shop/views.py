@@ -2,6 +2,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from dashboard.models import Notification
 from . models import Slider
+
 def homePage(request):
     sliders = Slider.objects.all()
     c = {
@@ -29,4 +30,5 @@ def DeleteMessage(request, message_id):
         message.is_delete = True
         message.save()
     return redirect('/messages/')
-    
+def DOC(request):
+    return render(request, 'doc.html')

@@ -40,9 +40,9 @@
             </div>
 
             <div class="col-xxl-6 col-xl-5 col-lg-6 col-md-9">
-                <form action="#">
+                <form action="{% url 'search_by'%}" method="GET">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search for products"
+                        <input class="form-control" type="search" name="search" placeholder="Search for products"
                             aria-label="Recipient's username" aria-describedby="button-addon2" />
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
@@ -51,36 +51,26 @@
             <div class="col-xxl-4 col-xl-5 col-lg-3 d-none d-lg-block">
                 <div class="d-flex align-items-center justify-content-between ms-4">
                     <div class="text-center">
-                        <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="lh-1">
-                                    <div class="position-relative d-inline-block mb-2">
-                                        <i class="bi bi-bell fs-4"></i>
-                                        <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            1
-                                            <span class="visually-hidden">unread messages</span>
-                                        </span>
-                                    </div>
-                                    <p class="mb-0 d-none d-xl-block small">Notification</p>
+                        <div class="ms-6 text-center">
+                        <a href="{% url 'user_message' %}" class="text-reset">
+                            <div class="lh-1">
+                                <div class="position-relative d-inline-block mb-2">
+                                    <i class="bi bi-bell fs-4"></i>
+                                       {% if unread_count > 0 %}
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{unread_count}}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                        {% endif %}
                                 </div>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-lg p-0">
-                                <div>
-                                    <h6 class="px-4 border-bottom py-3 mb-0">Notification</h6>
-                                    <p class="mb-0 px-4 py-3">
-                                        <a href="#">Sign in</a>
-                                        or
-                                        <a href="#">register</a>
-                                        in or so you don t have to enter your details every time
-                                    </p>
-                                </div>
+                                <p class="mb-0 d-none d-xl-block small">Notification</p>
                             </div>
-                        </div>
+                        </a>
+                    </div>
                     </div>
                     <div class="ms-6 text-center">
-                        <a href="account-orders.html" class="text-reset">
+                        <a href="{% url 'order_list'%}" class="text-reset">
                             <div class="lh-1">
                                 <div class="mb-2">
                                     <i class="bi bi-archive fs-4"></i>
@@ -94,11 +84,11 @@
                             <div class="lh-1">
                                 <div class="position-relative d-inline-block mb-2">
                                     <i class="bi bi-heart fs-4"></i>
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        1
-                                        <span class="visually-hidden">unread messages</span>
-                                    </span>
+                                        <!-- <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            1
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span> -->
                                 </div>
                                 <p class="mb-0 d-none d-xl-block small">Wishlist</p>
                             </div>
@@ -342,73 +332,8 @@
                         <a class="nav-link " href="{% url 'productlist'%}" aria-expanded="false">Shops</a>
 
                     </li>
-                    <li class="nav-item dropdown dropdown-fullwidth">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Mega menu</a>
-                        <div class="dropdown-menu pb-0">
-                            <div class="row p-2 p-lg-4">
-                                <div class="col-lg-3 col-12 mb-4 mb-lg-0">
-                                    <h6 class="text-primary ps-3">Dairy, Bread & Eggs</h6>
-                                    <a class="dropdown-item" href="shop-grid.html">Butter</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Milk Drinks</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Curd & Yogurt</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Eggs</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Buns & Bakery</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Cheese</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Condensed Milk</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Dairy Products</a>
-                                </div>
-                                <div class="col-lg-3 col-12 mb-4 mb-lg-0">
-                                    <h6 class="text-primary ps-3">Breakfast & Instant Food</h6>
-                                    <a class="dropdown-item" href="shop-grid.html">Breakfast Cereal</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Noodles, Pasta & Soup</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Frozen Veg Snacks</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Frozen Non-Veg Snacks</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Vermicelli</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Instant Mixes</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Batter</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Fruit and Juices</a>
-                                </div>
-                                <div class="col-lg-3 col-12 mb-4 mb-lg-0">
-                                    <h6 class="text-primary ps-3">Cold Drinks & Juices</h6>
-                                    <a class="dropdown-item" href="shop-grid.html">Soft Drinks</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Fruit Juices</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Coldpress</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Water & Ice Cubes</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Soda & Mixers</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Health Drinks</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Herbal Drinks</a>
-                                    <a class="dropdown-item" href="shop-grid.html">Milk Drinks</a>
-                                </div>
-                                <div class="col-lg-3 col-12 mb-4 mb-lg-0">
-                                    <div class="card border-0">
-                                        <img src="../assets/images/banner/menu-banner.jpg" alt="eCommerce HTML Template"
-                                            class="img-fluid" />
-                                        <div class="position-absolute ps-6 mt-8">
-                                            <h5 class="mb-0">
-                                                Dont miss this
-                                                <br />
-                                                offer today.
-                                            </h5>
-                                            <a href="#" class="btn btn-primary btn-sm mt-3">Shop Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Pages</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                            <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-                            <li><a class="dropdown-item" href="blog-category.html">Blog Category</a></li>
-                            <li><a class="dropdown-item" href="about.html">About us</a></li>
-                            <li><a class="dropdown-item" href="404error.html">404 Error</a></li>
-                            <li><a class="dropdown-item" href="contact.html">Contact</a></li>
-                        </ul>
-                    </li>
+                  
+                 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Account</a>
@@ -430,14 +355,12 @@
                     </li>
                     </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../dashboard/index.html">Dashboard</a>
-                    </li>
+                   
                     <li class="nav-item dropdown dropdown-flyout">
                         <a class="nav-link" href="#" id="navbarDropdownDocs" role="button" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Docs</a>
                         <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="navbarDropdownDocs">
-                            <a class="dropdown-item align-items-start" href="../docs/index.html">
+                            <a class="dropdown-item align-items-start" href="{% url 'doc'%}">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-file-text text-primary" viewBox="0 0 16 16">
@@ -452,22 +375,7 @@
                                     <p class="mb-0 small">Browse the all documentation</p>
                                 </div>
                             </a>
-                            <a class="dropdown-item align-items-start" href="../docs/changelog.html">
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                        class="bi bi-layers text-primary" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
-                                    </svg>
-                                </div>
-                                <div class="ms-3 lh-1">
-                                    <h6 class="mb-1">
-                                        Changelog
-                                        <span class="text-primary ms-1">v1.3.0</span>
-                                    </h6>
-                                    <p class="mb-0 small">See what's new</p>
-                                </div>
-                            </a>
+                            
                         </div>
                     </li>
                     </ul>

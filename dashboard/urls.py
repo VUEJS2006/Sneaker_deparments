@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('admin_order/', views.AdminOrder, name='admin_order'),
     path('admin_order/delete/<int:pk>', views.OrderDelete, name='order_delete'),
-    path('admin_orderitem', views.OrderItems, name='admin_orderitem')
+    path('admin_orderitem', views.OrderItems, name='admin_orderitem'),
+    path('admin/status/<int:order_id>', views.OrderStatus, name='admin_status'),
 
 ]

@@ -29,8 +29,21 @@ def CategoryList(request, foo):
         messages.success(request, ("That Category Doesn't exists"))
         return redirect('/')
     
-
-
-    #  context = {
-    #     'category':category
-    # }
+def Search_by(request):
+    if request.method == "GET":
+        search = request.GET.get('search')
+        if search:
+         products = Product.objects.filter(
+            Q(name__icontains = search) | 
+            Q(price__icontains = search)
+        )
+        context = {
+           'products':products
+        }
+        return render(request, 'products_list.html', context)
+    else:
+       products = Product.objects.all()
+       context = {
+          'products':products
+       }
+       return render(request, 'products_list.html', context)
