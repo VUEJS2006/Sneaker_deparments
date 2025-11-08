@@ -1,20 +1,24 @@
 from django.shortcuts import render, redirect
 from .models import Product,Category
 from django.contrib import messages
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required(login_url='login')
 def ProductDetail(request, pk):
     product = Product.objects.get(id = pk)
     context = {
         'product':product
     }
     return render(request,'products_detail.html', context)
-
+@login_required(login_url='login')
 def ProductList(request):
     products = Product.objects.all()
     context = {
         'products':products
     }
     return render(request,'products_list.html',context)
+@login_required(login_url='login')
 def CategoryList(request, foo):
     foo  = foo.replace('_', '')
     try:
@@ -27,23 +31,18 @@ def CategoryList(request, foo):
      return render(request, 'category.html', context)
     except:
         messages.success(request, ("That Category Doesn't exists"))
-        return redirect('/')
-    
-def Search_by(request):
-    if request.method == "GET":
-        search = request.GET.get('search')
-        if search:
-         products = Product.objects.filter(
-            Q(name__icontains = search) | 
-            Q(price__icontains = search)
-        )
-        context = {
-           'products':products
-        }
-        return render(request, 'products_list.html', context)
-    else:
-       products = Product.objects.all()
-       context = {
-          'products':products
+        return redirect('/')    
+def Search_By(request):
+   if request.method == "GET":
+    keyword = request.GET.get('keyword','')
+    products = Product.objects.all()
+    product_count = products.count()
+
+   if keyword:
+      products = products.filter(Q(name__icontains = keyword) | Q(price__icontains = keyword))
+      product_count = products.count()
+      context = {
+       'products':products,
+       'product_count':product_count
        }
-       return render(request, 'products_list.html', context)
+   return render(request, 'products_list.html', context)

@@ -14,14 +14,20 @@
 
   <!-- section -->
   <div class="mt-8 mb-lg-154 mb-8">
-    <!-- container -->
+    <h3 style="text-align: center;">
+      {% if request.GET.keyword %}
+      Search Result for "{{request.GET.keyword}}"
+      {% else %}
+      Top products
+      {% endif%}
+    </h3>
     <div class="container">
       <!-- row -->
       <div class="row gx-10">
-        <!-- col -->
+     
 
         <section class="col-lg-9 col-md-12">
-          <!-- card -->
+         
 
       </div>
       <!-- row -->

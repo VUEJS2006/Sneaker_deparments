@@ -107,9 +107,6 @@
                                         <th>Image</th>
                                         <th>Qty</th>
                                         <th>Total Price</th>
-                                        <th>Email</th>
-                                        <th>Price</th>
-                                        <th>PinCode</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -124,15 +121,10 @@
                                             <img src="{{user_order.product.image.url}}" alt="" width="60">
                                         </td>
                                         <td class="align-middle">{{user_order.quantity}}</td>
-                                        <td class="align-middle">${{user_order.order.total_price}}/-</td>
-                                        <td class="align-middle">{{user_order.order.email}}</td>
-
-                                        <td class="align-middle">${{user_order.product.price}}/-</td>
-                                        <td class="align-middle">#{{user_order.order.pincode}}FF</td>
+                                        <td class="align-middle">${{user_order.order.total_price}}/-</td>                                     
                                         <td class="align-middle">
                                             {% if user_order.order.status == 'Pending'%}
                                             <span class="badge bg-warning">
-
                                                 {{user_order.order.status}}
                                                 {% endif %}
                                             </span>

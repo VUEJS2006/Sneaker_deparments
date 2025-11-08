@@ -58,8 +58,8 @@
                                             <th>Sale</th>
                                             <th>Image</th>
                                             <th>Price</th>
-                                            <th>Sale Price</th>
-                                            <th>Description</th>
+                                            <th>Sale </th>
+                                            <th>Descri</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -88,8 +88,8 @@
                                             <td>${{product.sale_price}}/-</td>
                                             <td> {{product.desciption | truncatechars:8}}</td>
                                             <td>
-                                                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal_{{ product.id }}">Update</button>
-                                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ product.id }}">Delete</button>
+                                                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal_{{ product.id }}"><i class="bi bi-arrow-clockwise"></i></button>
+                                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ product.id }}"><i class="bi bi-trash3"></i></button>
                                             </td>
                                         </tr>
                                         {% endfor %}

@@ -9,7 +9,9 @@ urlpatterns = [
     #path('messages/delete/<message_id>', views.DeleteMessage, name='message_delete'),
     path('messages/delete/<int:message_id>', views.DeleteMessage, name='delete_message'),
     path('doc/', views.DOC, name='doc'),
- 
+    path('contact/', views.ContactUs, name='contact'),
+    path('service/', views.Service, name='service'),
+    
     
     
 ]

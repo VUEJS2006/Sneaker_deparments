@@ -2,7 +2,7 @@
 {% block title %}Admin Order{% endblock %}
 {% block content %}
 {% include 'sider.html'%}
-<div class="main-wrapper" style="margin-left: 270px;">
+<div class="main-wrapper" style="margin-left: 250px;">
 	<main class="main-content-wrapper">
 		<div class="container">
 			<!-- row -->
@@ -10,7 +10,7 @@
 				<div class="col-md-12">
 					<!-- page header -->
 					<div>
-						<h2>Order List</h2>
+						<h2 style="text-align: center;">Order List</h2>
 						<!-- breacrumb -->
 
 					</div>
@@ -43,29 +43,25 @@
 										<tr>
 											<th>No</th>
 											<th>Image</th>
-											<th>Payments</th>
 											<th>Amount</th>
 											<th>Status</th>
-											<th>Name</th>
-											<th>Email</th>
-											<th>Phone</th>
-											<th>Country</th>
-											<th>City</th>
-											<th>State</th>
+											<th>Info</th>
+										
 											<th>Address</th>
 											<th>Action</th>
 											<th>Status</th>
+											<th>Print</th>
 										</tr>
 									</thead>
 									<tbody>
 										{% for order in orders %}
-										<tr>
+										<tr  id="order-{{order.id}}">
 											<td>{{forloop.counter}}</td>
 
 											<td>
 												<img src="{{order.image.url}}" alt="" width="40">
 											</td>
-											<td>{{order.get_payment_method_display}}</td>
+											<!-- <td>{{order.get_payment_method_display}}</td> -->
 											<td>${{order.total_price}}/-</td>
 											<td> {% if order.status == 'Pending'%}
 												<span class="badge bg-warning ">
@@ -88,17 +84,25 @@
 												{% endif %}
 											</td>
 
-											<td>{{order.fullname}}</td>
-											<td>{{order.email}}</td>
-											<td>{{order.phone}}</td>
-											<td>{{order.country}}</td>
-											<td>{{order.city}}</td>
-											<td>{{order.state}}</td>
-											<td>{{order.address}}</td>
+											<td>
+
+												<select name="status" class="form-select">
+
+														<option value="Pending" 
+															>{{order.fullname}}</option>
+														<option value="Confirm">{{order.email}}</option>
+														<option value="Cancel">{{order.phone}}</option></select>
+												
+											</td>
+											
+											
+											<td>
+												<textarea  style="resize: none; border-radius: 5px; border-color: rgb(224, 224, 224);">{{order.address}}</textarea>
+											</td>
 
 											<td>
 												<button class="btn btn-danger" data-bs-toggle="modal"
-													data-bs-target="#deleteModal_{{ order.id }}">Delete</button>
+													data-bs-target="#deleteModal_{{ order.id }}"><i class="bi bi-trash3"></i></button>
 											
 											</td>
 											<td>
@@ -116,8 +120,11 @@
 
 													</select>
 
-													<button type="submit" class="btn btn-primary btn-sm">Update</button>
+													<button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-arrow-clockwise"></i></button>
 												</form>
+											</td>
+											<td>
+												<a href="{% url 'printer' order.id %}"  class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-arrow-down fs-6"></i></a>
 											</td>
 										</tr>
 										{% endfor %}
@@ -166,5 +173,7 @@
 	</div>
 </div>
 {% endfor %}
+
+
 
 {% endblock %}

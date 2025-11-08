@@ -46,12 +46,13 @@
 											<th>Name</th>
 											<th>Image</th>
 											<th>Qty</th>
-											<th>Price</th>
+											
                                             <th>TotalPrice</th>
-                                            <th>PinCode</th>
+                                            
                                             <th>Email</th>
                                             <th>Size</th>
                                             <th>Action</th>
+											
 											
 										</tr>
 									</thead>
@@ -63,13 +64,13 @@
 											<td>{{orderitem.product.name}}</td>
 											<td><img src="{{orderitem.product.image.url}}" alt="" width="50"></td>
 											<td>{{orderitem.quantity}}</td>
-                                            <td>${{orderitem.price}}/-</td>
+                                        
                                             <td>${{orderitem.order.total_price}}/-</td>
-											<td>{{orderitem.order.pincode}}</td>
+											
                                             <td>{{orderitem.order.email}}</td>
                                             <td>{{orderitem.order.size}}</td>
 											<td>
-												   <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ order.id }}">Delete</button>
+												   <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ order.id }}"><i class="bi bi-trash3"></i></button>
 											</td>
 										</tr>
 										{% endfor %}

@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from dashboard.models import Notification
-from . models import Slider
+from . models import Slider, Contact
 
 def homePage(request):
     sliders = Slider.objects.all()
@@ -32,3 +32,18 @@ def DeleteMessage(request, message_id):
     return redirect('/messages/')
 def DOC(request):
     return render(request, 'doc.html')
+def ContactUs(request):
+    if request.method == "GET":
+     return render(request, 'contact.html')
+    if request.method == "POST":
+     contact  = Contact.objects.create(
+        username = request.POST.get('username'),
+        title = request.POST.get('title'),
+        email = request.POST.get('email'),
+        phone = request.POST.get('phone'),
+        message = request.POST.get('message')
+    )
+    contact.save()
+    return redirect('/')
+def Service(request):
+   return render(request, 'service.html')

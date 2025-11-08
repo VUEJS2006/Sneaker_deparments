@@ -52,7 +52,7 @@
                                             <th>Username</th>
                                             <th>Email</th>
                                             <th>Password</th>
-                                            <th>Confim Password</th>
+                                            
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -64,14 +64,14 @@
                                             <td>{{user.username}}</td>
                                             <td>{{user.email}}</td>
                                             <td>{{user.password | truncatechars:10}}</td>
-                                            <td>{{user.password_confirm}}</td>
+                                          
                                             <td>
                                                 <span class="badge bg-success">Success</span>
                                             </td>
                                             <td>
 
                                                 <button class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal_{{user.id}}">Delete</button>
+                                                    data-bs-target="#deleteModal_{{user.id}}"><i class="bi bi-trash3"></i></button>
                                             </td>
                                         </tr>
                                         {% endfor %}

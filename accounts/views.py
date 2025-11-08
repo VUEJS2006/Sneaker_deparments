@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def LoginView(request):
     if request.method == "GET":
@@ -66,3 +67,30 @@ def RegisterView(request):
 def LogoutView(request):
     logout(request)
     return redirect('/accounts/login/')
+
+def ChangePasswrd(request):
+    user = request.user
+    if request.method == "GET":
+      return render(request, 'change_password.html',{'user':user})
+    if request.method == "POST":
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if not user.check_password(current_password):
+            messages.error(request, 'Your Current Password is wrong!')
+            return redirect('/accounts/change/password/')
+        elif new_password != confirm_password:
+            messages.error(request, 'Your Password Does Not Match!')
+            return redirect('/accounts/change/password/')
+        elif new_password == current_password:
+            messages.error(request, 'Your Current Password and New Password Is Same!')
+            return redirect('/accounts/change/password/')
+        else:
+            user.set_password(new_password)
+            user.save()
+            messages.success(request, 'Your Change Password Success!')
+            return redirect('/accounts/login/')
+
+
+   

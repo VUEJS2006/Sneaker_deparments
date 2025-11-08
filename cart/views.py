@@ -40,13 +40,13 @@ def add_to_cart(request, product_id):
 def cart_view(request):
     cart_items = CartItem.objects.filter(user=request.user).select_related('product')
     cart_subtotal = sum([item.total_price for item in cart_items], Decimal('0.00'))
-    service_fee = Decimal('3.00') if cart_subtotal > 0 else Decimal('0.00')
-    cart_total = cart_subtotal + service_fee
+    # service_fee = Decimal('3.00') if cart_subtotal > 0 else Decimal('0.00')
+    cart_total = cart_subtotal
+    #  + service_fee
 
     return render(request, 'cart.html', {
         'cart_items': cart_items,
         'cart_subtotal': cart_subtotal,
-        'service_fee': service_fee,
         'cart_total': cart_total,
     })
 

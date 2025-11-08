@@ -35,10 +35,9 @@ def PlaceOrder(request):
      neworder.phone = request.POST['phone']
      neworder.image = request.FILES.get('image')
      neworder.address = request.POST['address']
-     neworder.city = request.POST['city']
-     neworder.state = request.POST['state']
+    
      neworder.pincode = request.POST['pincode']
-     neworder.country = request.POST['country']
+    
      neworder.size = request.POST['size']
      cart = CartItem.objects.filter(user = request.user)
      cart_total_price = 0

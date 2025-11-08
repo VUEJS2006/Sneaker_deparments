@@ -1,12 +1,34 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from products.models import Product, Category
 from django.contrib.auth.models import User
-from sneaker_shop.models import Slider
+from sneaker_shop.models import Slider, Contact
+from . models import Notification
 from django.contrib import messages
 from checkout.models import Order,OrderItem
+
 # Create your views here.
 def admin_home(request):
-    return render (request,'admin.html')
+    orders = Order.objects.all()
+    order_total_amount = 0
+    for order in orders:
+        order_total_amount = order_total_amount + order.total_price
+   
+    
+        context = {
+            'order':order,
+            'order_total_amount':order_total_amount
+        }
+    return render (request,'admin.html', context)
+def Printer(request, pk):
+     print = get_object_or_404(Order, id = pk)
+     print_items = print.items.all()
+     context = {
+         'print':print,
+         'print_items':print_items
+     }
+     return render(request, 'printer.html', context)
+
+    
 
 def CategoryList(request):
     categories = Category.objects.all()
@@ -154,3 +176,44 @@ def OrderStatus(request, order_id):
      order.status = new_status
      order.save()
      return redirect('/dashboard/admin_order/')
+def NotiList(request):
+    users = User.objects.all()
+    notis = Notification.objects.all()
+    context = {
+        'users':users,
+        'notis':notis
+    }
+    return render(request, 'adminnoti.html', context)
+def NotiCreate(request):
+    if request.method == "POST":
+        notifi = Notification.objects.create(
+        title = request.POST['title'],
+        content = request.POST['content'],
+        user_id = request.POST['user']
+    )
+    notifi.save()
+    return redirect('/dashboard/admin_noti/')
+def NotiDelete(request, pk):
+    noti = Notification.objects.get(id = pk)
+    if request.method == "POST":
+        noti.delete()
+    return redirect('/dashboard/admin_noti/')
+def NotiUpdate(request, pk):
+    noti = Notification.objects.get(id = pk)
+    if request.method == "POST":
+        noti.title = request.POST['title']
+        noti.content = request.POST['content']
+        noti.user_id = request.POST['user']
+        noti.save()
+        return redirect('/dashboard/admin_noti/')
+def AdminContact(request):
+     contacts = Contact.objects.all()
+     context = {
+         'contacts':contacts
+     }
+     return render(request,'admin_contact.html', context)
+def ContactDelete(request, pk):
+    contact = Contact.objects.get(id = pk)
+    if request.method == "POST":
+        contact.delete()
+        return redirect('/dashboard/contact/')

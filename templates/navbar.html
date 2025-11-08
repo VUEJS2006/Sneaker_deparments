@@ -1,8 +1,5 @@
 {% block content %}
-
-<header>
-    <div class="container">
-        <div class="row align-items-center pt-2">
+<!-- <div class="row align-items-center pt-2">
             <div class="col-xl-3 col-lg-8 col-7 d-flex">
                 <div class="dropdown selectBox">
                     <a class="dropdown-toggle selectValue text-reset" href="javascript:void(0)"
@@ -31,9 +28,12 @@
                 <a href="#" class="text-reset">Support</a>
                 <a href="#" class="mx-md-8 ms-4 text-reset">Delivery</a>
                 <a href="#" class="text-reset d-none d-md-block">Warranty</a>
-                <!-- Button -->
+                 Button
             </div>
-        </div>
+        </div> -->
+<header>
+    <div class="container">
+        
         <div class="row align-items-center pt-6 pb-4 mt-4 mt-lg-0">
             <div class="col-xl-2 col-md-3 mb-4 mb-md-0 col-12 text-center text-md-start">
                 <a href="/" style="font-size: 1.5rem;">Super Luxury</a>
@@ -42,7 +42,7 @@
             <div class="col-xxl-6 col-xl-5 col-lg-6 col-md-9">
                 <form action="{% url 'search_by'%}" method="GET">
                     <div class="input-group">
-                        <input class="form-control" type="search" name="search" placeholder="Search for products"
+                        <input class="form-control" type="search" name="keyword" placeholder="Search for products"
                             aria-label="Recipient's username" aria-describedby="button-addon2" />
                         <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
                     </div>
@@ -52,22 +52,22 @@
                 <div class="d-flex align-items-center justify-content-between ms-4">
                     <div class="text-center">
                         <div class="ms-6 text-center">
-                        <a href="{% url 'user_message' %}" class="text-reset">
-                            <div class="lh-1">
-                                <div class="position-relative d-inline-block mb-2">
-                                    <i class="bi bi-bell fs-4"></i>
-                                       {% if unread_count > 0 %}
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {{unread_count}}
-                                        <span class="visually-hidden">unread messages</span>
-                                    </span>
+                            <a href="{% url 'user_message' %}" class="text-reset">
+                                <div class="lh-1">
+                                    <div class="position-relative d-inline-block mb-2">
+                                        <i class="bi bi-bell fs-4"></i>
+                                        {% if unread_count > 0 %}
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{unread_count}}
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
                                         {% endif %}
+                                    </div>
+                                    <p class="mb-0 d-none d-xl-block small">Notification</p>
                                 </div>
-                                <p class="mb-0 d-none d-xl-block small">Notification</p>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="ms-6 text-center">
                         <a href="{% url 'order_list'%}" class="text-reset">
@@ -84,7 +84,7 @@
                             <div class="lh-1">
                                 <div class="position-relative d-inline-block mb-2">
                                     <i class="bi bi-heart fs-4"></i>
-                                        <!-- <span
+                                    <!-- <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                             1
                                             <span class="visually-hidden">unread messages</span>
@@ -138,7 +138,7 @@
                                     <a href="javascript:void(0)"
                                         class="dropdown-item d-flex justify-content-between mb-1 py-1">
                                         <div>
-                                           
+
 
                                             <span class="ms-1">Street &amp; Fashion</span>
                                         </div>
@@ -188,7 +188,7 @@
                                     <a href="javascript:void(0)"
                                         class="dropdown-item d-flex justify-content-between mb-1 py-1">
                                         <div>
-                                           
+
 
                                             <span class="ms-1">Sport &amp; Fashion</span>
                                         </div>
@@ -204,22 +204,28 @@
                                                     <a href="#" class="dropdown-item"></a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Nike</a>
+                                                    <a href="{% url 'categorylist' 'Nike'%}"
+                                                        class="dropdown-item">Nike</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Adidas</a>
+                                                    <a href="{% url 'categorylist' 'Adidas'%}"
+                                                        class="dropdown-item">Adidas</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">New Balance</a>
+                                                    <a href="{% url 'categorylist' 'New Balance'%}"
+                                                        class="dropdown-item">New Balance</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Asics</a>
+                                                    <a href="{% url 'categorylist' 'Asics'%}"
+                                                        class="dropdown-item">Asics</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Reebok</a>
+                                                    <a href="{% url 'categorylist' 'Reebok'%}"
+                                                        class="dropdown-item">Reebok</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Skechers</a>
+                                                    <a href="{% url 'categorylist' 'Skechers'%}"
+                                                        class="dropdown-item">Skechers</a>
                                                 </li>
 
                                             </ul>
@@ -230,7 +236,7 @@
                                     <a href="javascript:void(0)"
                                         class="dropdown-item d-flex justify-content-between mb-1 py-1">
                                         <div>
-                                           
+
 
                                             <span class="ms-1">Style&amp; Fashion</span>
                                         </div>
@@ -243,28 +249,36 @@
                                         <div>
                                             <ul class="list-unstyled" style="margin-left: 60px;">
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Gucci</a>
+                                                    <a href="{% url 'categorylist' 'Gucci'%}"
+                                                        class="dropdown-item">Gucci</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">D's Martin</a>
+                                                    <a href="{% url 'categorylist' 'Martin'%}" class="dropdown-item">D's
+                                                        Martin</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Converse</a>
+                                                    <a href="{% url 'categorylist' 'Converse'%}"
+                                                        class="dropdown-item">Converse</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Loewe</a>
+                                                    <a href="{% url 'categorylist' 'Loewe'%}"
+                                                        class="dropdown-item">Loewe</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Prada</a>
+                                                    <a href="{% url 'categorylist' 'Prada'%}"
+                                                        class="dropdown-item">Prada</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Hoka</a>
+                                                    <a href="{% url 'categorylist' 'Skechers'%}"
+                                                        class="dropdown-item">Hoka</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Vans</a>
+                                                    <a href="{% url 'categorylist' 'Vans'%}"
+                                                        class="dropdown-item">Vans</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Golden Goose</a>
+                                                    <a href="{% url 'categorylist' 'Golden Goose'%}"
+                                                        class="dropdown-item">Golden Goose</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -274,7 +288,7 @@
                                     <a href="javascript:void(0)"
                                         class="dropdown-item d-flex justify-content-between mb-1 py-1">
                                         <div>
-                                          
+
 
                                             <span class="ms-1">Luxury &amp; Fashion</span>
                                         </div>
@@ -287,28 +301,35 @@
                                         <div>
                                             <ul class="list-unstyled" style="margin-left: 60px;">
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Gucci</a>
+                                                    <a href="{% url 'categorylist' 'Gucci'%}"
+                                                        class="dropdown-item">Gucci</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Balenciaga</a>
+                                                    <a href="{% url 'categorylist' 'Balenciaga'%}"
+                                                        class="dropdown-item">Balenciaga</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Common
+                                                    <a href="{% url 'categorylist' 'Vans Projects'%}"
+                                                        class="dropdown-item">Common
                                                         Projects</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Christian
+                                                    <a href="{% url 'categorylist' 'Christian Louboutin'%}"
+                                                        class="dropdown-item">Christian
                                                         Louboutin</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Alexander
+                                                    <a href="{% url 'categorylist' 'Alexander McQueen'%}"
+                                                        class="dropdown-item">Alexander
                                                         McQueen</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Burberry</a>
+                                                    <a href="{% url 'categorylist' 'Burberry'%}"
+                                                        class="dropdown-item">Burberry</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item">Off-White</a>
+                                                    <a href="{% url 'categorylist' 'Off-White'%}"
+                                                        class="dropdown-item">Off-White</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -332,14 +353,23 @@
                         <a class="nav-link " href="{% url 'productlist'%}" aria-expanded="false">Shops</a>
 
                     </li>
-                  
-                 
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'contact'%}" aria-expanded="false">Contact</a>
+
+                    </li>
+                      <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'service'%}" aria-expanded="false">service</a>
+
+                    </li>
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Account</a>
                         <ul class="dropdown-menu">
                             {% if request.user.is_authenticated %}
                             <li><a class="dropdown-item" href="{% url 'logout'%}">Sign Out</a></li>
+                            <li><a class="dropdown-item" href="{% url 'change_pass'%}">Change Passwprd</a></li>
                             {% else %}
                             <li><a class="dropdown-item" href="{% url 'login' %}">Sign In</a></li>
                             {% endif %}
@@ -355,7 +385,7 @@
                     </li>
                     </ul>
                     </li>
-                   
+
                     <li class="nav-item dropdown dropdown-flyout">
                         <a class="nav-link" href="#" id="navbarDropdownDocs" role="button" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Docs</a>
@@ -375,7 +405,7 @@
                                     <p class="mb-0 small">Browse the all documentation</p>
                                 </div>
                             </a>
-                            
+
                         </div>
                     </li>
                     </ul>

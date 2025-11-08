@@ -1,5 +1,5 @@
 {% load static %}
-   
+
 <div>
 	<nav class="navbar navbar-expand-lg navbar-glass">
 		<div class="container-fluid">
@@ -16,7 +16,7 @@
 				</div>
 				<div>
 					<ul class="list-unstyled d-flex align-items-center mb-0 ms-5 ms-lg-0">
-						
+
 						<li class="dropdown ms-4">
 							<a href="{% url 'dashboard' %}" role="button" data-bs-toggle="dropdown"
 								aria-expanded="false">
@@ -112,8 +112,16 @@
 						<li class="nav-item">
 							<a class="nav-link " href="{% url 'authentication'%}">
 								<div class="d-flex align-items-center">
-									<span class="nav-link-icon"><i class="bi bi-shop"></i></span>
+									<span class="nav-link-icon"><i class="bi bi-person-badge"></i></span>
 									<span class="nav-link-text">Authentication</span>
+								</div>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link " href="{% url 'notilist'%}">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-icon"><i class="bi bi-bell"></i></span>
+									<span class="nav-link-text">Notification</span>
 								</div>
 							</a>
 						</li>
@@ -140,7 +148,14 @@
 								</ul>
 							</div>
 						</li>
-
+						<li class="nav-item">
+							<a class="nav-link " href="{% url 'admin_contact'%}">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-icon"><i class="bi bi-person-rolodex"></i></span>
+									<span class="nav-link-text">Contact Message</span>
+								</div>
+							</a>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link " href="reviews.html">
 								<div class="d-flex align-items-center">
@@ -148,7 +163,7 @@
 									<span class="nav-link-text">Reviews</span>
 								</div>
 							</a>
-
+						</li>
 					</ul>
 				</div>
 			</div>
