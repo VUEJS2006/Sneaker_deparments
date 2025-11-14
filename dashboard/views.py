@@ -12,11 +12,14 @@ def admin_home(request):
     order_total_amount = 0
     for order in orders:
         order_total_amount = order_total_amount + order.total_price
-   
     
-        context = {
+    total_order = Order.objects.count()
+    auth = User.objects.count()
+    context = {
             'order':order,
-            'order_total_amount':order_total_amount
+            'order_total_amount':order_total_amount,
+            'total_order':total_order,
+            'auth':auth
         }
     return render (request,'admin.html', context)
 def Printer(request, pk):
@@ -71,9 +74,11 @@ def ProductCreate(request):
             price = request.POST['price'],
             category_id  = request.POST['category'],
             desciption = request.POST['desciption'],
+            pin_code = request.POST['pin_code'],
             image = request.FILES.get('image'),
             is_sale = request.POST.get('is_sale') == "on",
             sale_price = request.POST['sale_price']
+
         )
         product.save()
         return redirect('/dashboard/adminproduct/')

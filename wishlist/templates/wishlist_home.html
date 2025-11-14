@@ -1,200 +1,118 @@
-{% extends 'base.html'%}
-{% block title %}Wishlist{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}My Wishlist{% endblock %}
 {% block content %}
 {% include 'navbar.html'%}
- <main>
-         <section class="mt-8 mb-14">
-            <div class="container">
-               <!-- row -->
-               <div class="row">
-                  <div class="col-lg-12">
-                     <div class="mb-8">
-                        <!-- heading -->
-                        <h1 class="mb-1">My Wishlist</h1>
-                        <p>There are 5 products in this wishlist.</p>
-                     </div>
-                     <div>
-                        <!-- table -->
-                        <div class="table-responsive">
-                           <table class="table text-nowrap table-with-checkbox">
-                              <thead class="table-light">
-                                 <tr>
-                                    <th>
-                                       <!-- form check -->
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="checkbox" value="" id="checkAll" />
-                                          <!-- label -->
-                                          <label class="form-check-label" for="checkAll"></label>
+
+<main>
+   <section class="mb-lg-14 mb-8">
+      <div class="container">
+         <!-- row -->
+         <div class="row">
+            <div class="col-12">
+               <div class="mb-6 d-xl-flex justify-content-between align-items-center">
+                  <h2>My Wishlist 💚</h2>
+               </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-12">
+               <!-- tab -->
+               <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-fruitsandveg" role="tabpanel"
+                     aria-labelledby="nav-fruitsandveg-tab" tabindex="0">
+                     <!-- row -->
+                     <div class="row row-cols-2 row-cols-xl-5 row-cols-md-3 g-4">
+                        {% if wishlist_items %}
+                        {% for item in wishlist_items %}
+                        {% with product=item.product %}
+                        <div class="col">
+                           <!-- card -->
+                           <div class="card card-product-v2 h-100">
+                              <div class="card-body position-relative">
+                                 <!-- badge -->
+                                 <div class="text-center position-relative">
+                                    <form action="{% url 'remove_from_wishlist' product.id %}" method="post">
+                                       {% csrf_token %}
+                                       <button type="submit" class="btn btn-sm btn-danger" style="margin-left: 130px;">
+                                          <i class="bi bi-trash3"></i>
+                                       </button>
+                                    </form>
+                                    <div class="position-absolute top-0 start-0">
+                                       {% if product.is_sale %}
+                                       <span class="badge bg-success">Sale</span>
+                                       {% else %}
+                                       <span class="badge bg-danger">No Sale</span>
+                                       {% endif %}
+                                    </div>
+                                    <!-- img -->
+                                    <a href="#!"><img src="{{item.product.image.url}}" alt="Grocery Ecommerce Template"
+                                          class="mb-3 img-fluid" /></a>
+                                    <!-- action btn -->
+                                    <div class="product-action-btn">
+
+                                    </div>
+                                 </div>
+
+                                 <!-- title -->
+                                 <h2 class="fs-6"><a href="#!"
+                                       class="text-inherit text-decoration-none">{{item.product.name}}</a></h2>
+                                 <div>
+                                    <!-- rating -->
+                                    <small class="text-warning">
+                                       <i class="bi bi-star-fill"></i>
+                                       <i class="bi bi-star-fill"></i>
+                                       <i class="bi bi-star-fill"></i>
+                                       <i class="bi bi-star-fill"></i>
+                                       <i class="bi bi-star-half"></i>
+                                    </small>
+                                    <span class="text-muted small">4.5(149)</span>
+                                 </div>
+                                 <!-- price -->
+                                 <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div>
+                                       <span class="text-danger">${{item.product.sale_price}}</span>
+                                       <span
+                                          class="text-decoration-line-through text-muted">${{item.product.price}}</span>
+                                    </div>
+                                    <div><span class="text-uppercase small text-primary">In Stock</span></div>
+
+                                 </div>
+                                 <div class="product-fade-block">
+                                    <div class="d-grid mt-4">
+                                       <a href="{% url 'productdetail' product.id%}"
+                                          class="btn btn-primary rounded-pill">View</a>
+                                    </div>
+                                 </div>
+                                 <!-- <form action="{% url 'remove_from_wishlist' product.id %}" method="post" class="mt-5">
+                                    {% csrf_token %}
+                                    <div class="product-fade-block">
+                                       <div class="d-grid mt-4">
+                                          <button type="submit" class="btn btn-sm btn-outline-danger px-2 py-1">
+                                             Remove from Wishlist
+                                          </button>
                                        </div>
-                                    </th>
-                                    <th></th>
-                                    <th>Product</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                    <th>Remove</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td class="align-middle">
-                                       <!-- form check -->
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="checkbox" value="" id="chechboxTwo" />
-                                          <!-- label -->
-                                          <label class="form-check-label" for="chechboxTwo"></label>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#"><img src="../assets/images/products/product-img-18.jpg" class="icon-shape icon-xxl" alt="" /></a>
-                                    </td>
-                                    <td class="align-middle">
-                                       <div>
-                                          <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Organic Banana</a></h5>
-                                          <small>$.98 / lb</small>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">$35.00</td>
-                                    <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                    <td class="align-middle">
-                                       <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                          <i class="feather-icon icon-trash-2"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle">
-                                       <!-- form check -->
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="checkbox" value="" id="chechboxThree" />
-                                          <!-- label -->
-                                          <label class="form-check-label" for="chechboxThree"></label>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#"><img src="../assets/images/products/product-img-17.jpg" class="icon-shape icon-xxl" alt="" /></a>
-                                    </td>
-                                    <td class="align-middle">
-                                       <div>
-                                          <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Fresh Kiwi</a></h5>
-                                          <small>4 no</small>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">$20.97</td>
-                                    <td class="align-middle"><span class="badge bg-danger">Out of Stock</span></td>
-                                    <td class="align-middle">
-                                       <div class="btn btn-dark btn-sm">Contact us</div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                          <i class="feather-icon icon-trash-2"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle">
-                                       <!-- form check -->
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="checkbox" value="" id="chechboxFour" />
-                                          <!-- label -->
-                                          <label class="form-check-label" for="chechboxFour"></label>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#"><img src="../assets/images/products/product-img-16.jpg" class="icon-shape icon-xxl" alt="" /></a>
-                                    </td>
-                                    <td class="align-middle">
-                                       <div>
-                                          <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Golden Pineapple</a></h5>
-                                          <small>2 no</small>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">$35.00</td>
-                                    <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                    <td class="align-middle">
-                                       <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                          <i class="feather-icon icon-trash-2"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle">
-                                       <!-- form check -->
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="checkbox" value="" id="chechboxFive" />
-                                          <!-- label -->
-                                          <label class="form-check-label" for="chechboxFive"></label>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#"><img src="../assets/images/products/product-img-19.jpg" class="icon-shape icon-xxl" alt="" /></a>
-                                    </td>
-                                    <td class="align-middle">
-                                       <div>
-                                          <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">BeatRoot</a></h5>
-                                          <small>1 kg</small>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">$29.00</td>
-                                    <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                    <td class="align-middle">
-                                       <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                          <i class="feather-icon icon-trash-2"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle">
-                                       <!-- form check -->
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="checkbox" value="" id="chechboxSix" />
-                                          <!-- label -->
-                                          <label class="form-check-label" for="chechboxSix"></label>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#"><img src="../assets/images/products/product-img-15.jpg" class="icon-shape icon-xxl" alt="" /></a>
-                                    </td>
-                                    <td class="align-middle">
-                                       <div>
-                                          <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Fresh Apple</a></h5>
-                                          <small>2 kg</small>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">$70.00</td>
-                                    <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                    <td class="align-middle">
-                                       <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <a href="#" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                          <i class="feather-icon icon-trash-2"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
+                                    </div>
+                                 </form> -->
+
+                              </div>
+                              <div class="product-content-fade border-info" style="margin-bottom: -60px"></div>
+                           </div>
                         </div>
+
+                        {% endwith %}
+                        {% endfor %}
+                        {% else %}
+                        <p>No items in your wishlist yet.</p>
+                        {% endif %}
                      </div>
                   </div>
                </div>
             </div>
-         </section>
-      </main>
+         </div>
+
+   </section>
+</main>
+
+{% include 'footer.html' %}
 {% endblock %}

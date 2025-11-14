@@ -74,8 +74,19 @@
 
                         </div>
                         <br>
+                          <span style="background-color: orange; font-size: 15px; padding: 2px;border-radius: 5px;" class="fw-bold text-white ">#{{product.pin_code}}</span>
+                        <br>
+                        <br>
                         <span><small class="fs-6 ms-2" style="color: green;">Stock Avaliable</small></span>
-                        <!-- hr -->
+                     
+                            <form action="{% url 'add_to_wishlist' product.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-light" data-bs-toggle="tooltip"
+                                    aria-label="Wishlist">
+                                    <i class="feather-icon icon-heart"></i>
+                                </button>
+                            </form>
+                            
                         <hr class="my-6" />
                         <form method="POST" action="{% url 'add_to_cart' product.id %}">
                             {% csrf_token %}
@@ -93,19 +104,14 @@
                                         Add to cart
                                     </button>
                                 </div>
-                                <div class="col-md-4 col-4">
-                                    <a class="btn btn-light" href="#" data-bs-toggle="tooltip" data-bs-html="true"
-                                        aria-label="Compare">
-                                        <i class="bi bi-arrow-left-right"></i>
-                                    </a>
-                                    <a class="btn btn-light" href="shop-wishlist.html" data-bs-toggle="tooltip"
-                                        data-bs-html="true" aria-label="Wishlist"><i
-                                            class="feather-icon icon-heart"></i>
-                                    </a>
-                                </div>
+
                             </div>
                         </form>
-                        <!-- hr -->
+                        
+                           
+                        
+                        </div>
+                        
                         <hr class="my-6" />
                     </div>
                 </div>
@@ -188,7 +194,7 @@
                         </div>
                         <br>
                         <span><small class="fs-6 ms-2" style="color: red;">Out of stock</small></span>
-                        
+
                         <hr class="my-6" />
                     </div>
                 </div>

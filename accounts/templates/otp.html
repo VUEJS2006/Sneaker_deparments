@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}OPT Page{% endblock %}
+
+{% block content %}
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-M8S4MT3EYG");
+  </script>
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] =
+        c[a] ||
+        function () {
+          (c[a].q = c[a].q || []).push(arguments);
+        };
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "kuc8w5o9nt");
+  </script>
+  <div class="border-bottom shadow-sm">
+
+  </div>
+
+  <main>
+    <!-- section -->
+    <section class="my-lg-14 my-8">
+      <div class="container">
+        <!-- row -->
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+            <!-- img -->
+            <img src="../../media/uploads/checkout/fp-g.svg" alt="" class="img-fluid" />
+          </div>
+          <!-- col -->
+          <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+            <div class="mb-lg-9 mb-5">
+              <h1 class="mb-1 h2 fw-bold">OTP Deparment</h1>
+             
+            </div>  
+
+            <form class="needs-validation" novalidate method="POST" action="{% url 'otp' email%}">
+              {% csrf_token %}
+              <div class="row g-3">
+                <!-- row -->
+
+                <div class="col-12">
+                  <!-- input -->
+                  <label for="formSigninEmail" class="form-label visually-hidden">OTP</label>
+                  <input type="text" class="form-control" id="formSigninEmail" name="code" placeholder="Enter Your OTP" required />
+                  <div class="invalid-feedback">OTP</div>
+                </div>
+                <div class="col-12">
+                  
+                <div class="col-12 d-grid"><button type="submit" class="btn btn-primary">Submit</button></div>
+                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% include 'footer.html'%}
+</body>
+
+<!-- Mirrored from freshcart.codescandy.com/pages/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Nov 2024 06:08:47 GMT -->
+
+</html>
+
+{% endblock %}

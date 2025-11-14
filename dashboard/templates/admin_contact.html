@@ -49,20 +49,18 @@
                                     <thead class="bg-light">
                                         <tr>
                                             <th>No</th>
-                                            <th>Username</th>
                                             <th>Title</th>
                                             <th>Message</th>
                                             <th>Email</th>
                                             <th>Phone</th>
-                                         
-                                            <th>Action</th>
+                                            <th>Del</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                       {% for contact in contacts %}
                                         <tr>
                                             <td>{{forloop.counter}}</td>
-                                            <td>{{contact.username}}</td>
+                                           
                                             <td>{{contact.title}}</td>
                                             <td>{{contact.message}}</td>
                                             <td>{{contact.email}}</td>

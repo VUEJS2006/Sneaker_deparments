@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Confirm{% endblock %}
+
+{% block content %}
+
+<div class="border-bottom shadow-sm">
+
+</div>
+
+<main>
+    <!-- section -->
+    <section class="my-lg-14 my-8">
+        <div class="container">
+            <!-- row -->
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+                    <!-- img -->
+                    <img src="../../media/uploads/product/signin-g.svg" alt="" class="img-fluid" />
+                </div>
+                <!-- col -->
+                <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+                    <div class="mb-lg-9 mb-5">
+                        <h1 class="mb-1 h2 fw-bold">Reset Password to Super Luxury</h1>
+                       
+                    </div>
+
+                    <form class="needs-validation" novalidate method="POST" action="{% url 'email_comfirm'%}">
+                       {% csrf_token %}
+                        <div class="row g-3">
+                            <!-- row -->
+
+                            <div class="col-12">
+                                <!-- input -->
+                                <label for="formSigninEmail" class="form-label visually-hidden">Email</label>
+                                <input type="email" class="form-control" id="formSigninEmail" name="email"
+                                    placeholder="Email" required />
+                                <div class="invalid-feedback">Please enter email.</div>
+                            </div>
+                            
+                           
+                            <!-- btn -->
+                            <div class="col-12 d-grid"><button type="submit" class="btn btn-primary">Get OTP</button>
+                            </div>
+                           
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'footer.html'%}
+</body>
+
+<!-- Mirrored from freshcart.codescandy.com/pages/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Nov 2024 06:08:47 GMT -->
+
+</html>
+
+{% endblock %}

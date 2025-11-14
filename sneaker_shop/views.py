@@ -45,5 +45,5 @@ def ContactUs(request):
     )
     contact.save()
     return redirect('/')
-def Service(request):
-   return render(request, 'service.html')
+def PageNotFound(request):
+   return render(request, '404.html')

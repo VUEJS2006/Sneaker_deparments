@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+
 import os
-from dotenv import load_dotenv
-load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -129,7 +129,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Message
 
+from django.contrib.messages import constants as messages 
+MESSAGE_TAGS = { 
+messages.DEBUG: 'alert-secondary', 
+messages.INFO: 'alert-info', 
+messages.SUCCESS: 'alert-success', 
+messages.WARNING: 'alert-warning', 
+messages.ERROR: 'alert-danger', 
+} 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -142,13 +151,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-mail = os.environ.get("MAIL")
-mail_pass = os.environ.get("MAIL_PASSWORD")
-EMAIL_BACKEND = "django.core.email.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp-mail.outlook.com"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = mail
-EMAIL_FROM_PASSWORD = mail_pass
-DEFAULT_FROM_EMAIL = mail
-EMAIL_SUBJECT_PREFIX = "Password Recovery"
+EMAIL_HOST_USER = "vuejs477@gmail.com"
+EMAIL_HOST_PASSWORD = "txuz adcc fuwk tjmq"
+DEFAULT_FROM_EMAIL = "vuejs477@gmail.com"

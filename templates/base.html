@@ -36,8 +36,17 @@
 
 </head>
 
-<body>
+<body>  
+    {% if messages %}
+    {% for message in messages %}
 
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria label="Close"></button>
+    </div>
+
+    {% endfor %}
+    {% endif %}
     {% block content %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
     <script>
@@ -63,12 +72,6 @@
             y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "kuc8w5o9nt");
     </script>
-    {% for message in messages %}
-    <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
-        {{message}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
     {% endblock %}
     <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'libs/simplebar/dist/simplebar.min.js '%}"></script>

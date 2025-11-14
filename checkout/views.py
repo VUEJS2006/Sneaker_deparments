@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from cart.models import CartItem
 from products.models import Product
 from django.contrib import messages
-from . models import Order, OrderItem
-import random
+from . models import Order, OrderItem, Profile
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def Checkout(request):
@@ -16,17 +16,31 @@ def Checkout(request):
         subtotal += item.product.price * item.quantity
         service_fee = 3
         grand_total = subtotal + service_fee
+    user_profile = Profile.objects.filter(user = request.user).first()
     context = {
         'cartitems':cartitems,
         'subtotal':subtotal,
         'service_fee':service_fee,
-        'grand_total':grand_total
+        'grand_total':grand_total,
+        'user_profile':user_profile
     }
 
     return render(request,'checkout.html', context)
 @login_required(login_url='login')
 def PlaceOrder(request):
     if request.method == "POST":
+     
+     current_user = User.objects.filter(id = request.user.id).first()
+     if not current_user.username:
+         current_user.username = request.POST['username']
+         current_user.save()
+     if not Profile.objects.filter(user = request.user):
+         user_profile = Profile()
+         user_profile.user = request.user
+         user_profile.phone = request.POST['phone']
+         user_profile.address = request.POST['address']
+         user_profile.save()
+
      neworder = Order()
      neworder.user = request.user 
      neworder.fullname = request.POST['fullname']

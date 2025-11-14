@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
@@ -10,7 +10,9 @@ urlpatterns = [
     path('messages/delete/<int:message_id>', views.DeleteMessage, name='delete_message'),
     path('doc/', views.DOC, name='doc'),
     path('contact/', views.ContactUs, name='contact'),
-    path('service/', views.Service, name='service'),
+    # 404
+    # re_path(r"^.*/$",views.PageNotFound, name='404error'),
+    
     
     
     
