@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from products.models import Product, Category
 from django.contrib.auth.models import User
-from sneaker_shop.models import Slider, Contact
+from sneaker_shop.models import Slider, Contact, Review
 from . models import Notification
 from django.contrib import messages
 from checkout.models import Order,OrderItem
@@ -15,11 +15,17 @@ def admin_home(request):
     
     total_order = Order.objects.count()
     auth = User.objects.count()
+    message = Contact.objects.count()
+    review = Review.objects.count()
+    noti = Notification.objects.count()
     context = {
             'order':order,
             'order_total_amount':order_total_amount,
             'total_order':total_order,
-            'auth':auth
+            'auth':auth,
+            'message':message,
+            'review':review,
+            'noti':noti
         }
     return render (request,'admin.html', context)
 def Printer(request, pk):
@@ -222,3 +228,14 @@ def ContactDelete(request, pk):
     if request.method == "POST":
         contact.delete()
         return redirect('/dashboard/contact/')
+def Reviews(request):
+    reviews = Review.objects.all()
+    context = {
+        'reviews':reviews
+    }
+    return render(request,'admin_review.html',context)
+def ReviewDelete(request,pk):
+    review = Review.objects.get(id = pk)
+    if request.method == "POST":
+        review.delete()
+        return redirect('/dashboard/review/')

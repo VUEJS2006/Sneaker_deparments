@@ -36,7 +36,9 @@ urlpatterns = [
     path('printer/<int:pk>', views.Printer, name='printer'),
 # Contact
     path('contact/', views.AdminContact, name='admin_contact'),
-    path('contact/delete/<int:pk>', views.ContactDelete, name='contact_delete')
-
+    path('contact/delete/<int:pk>', views.ContactDelete, name='contact_delete'),
+# Review
+    path('review/',views.Reviews, name='admin_review'),
+    path('review/delete/<int:pk>',views.ReviewDelete, name='review_delete')
 
 ]

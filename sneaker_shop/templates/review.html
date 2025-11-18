@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title%}Review & Rating{% endblock %}
+{% block content %}
+{% include 'navbar.html'%}
+<main>
+    <div class="mt-4">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- col -->
+                <div class="col-12">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section -->
+    <section class="mt-8">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-12">
+                    <!-- heading -->
+                    <div class="bg-light d-flex justify-content-between ps-md-10 ps-6 rounded">
+                        <div class="d-flex align-items-center">
+                            <h1 class="mb-0 fw-bold">All Of Review And Rating</h1>
+                        </div>
+                        <div class="py-6">
+
+                            <img src="../assets/images/svg-graphics/store-graphics.svg" alt="" class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mt-6 mb-lg-14 mb-8">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-12">
+
+                </div>
+            </div>
+            <!-- row -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 g-lg-4">
+                <!-- col -->
+                {% for review in reviews %}
+                <div class="col">
+
+                    <div class="card flex-row p-8 card-product">
+
+
+                        <div class="ms-6">
+                            <h5 class="mb-1"><a href="#!" class="text-inherit"> Name :{{review.username}}</a></h5>
+                            <div class="small text-muted mt-5">
+                                <span style="font-size: 16px;"><p style="font-weight: 600;color: black;">Review :{{review.content_rev}}</p> </span>
+                            </div>
+                            <div class="py-3 mt-3">
+                                <ul class="list-unstyled mb-0 small">
+                                    <li style="font-size: 16px;">Email : {{review.email}}</li>
+                                </ul>
+                            </div>
+                            <div class="py-3">
+                                <ul class="list-unstyled mb-0 small">
+                                    <li>Date : {{review.created_at}}</li>
+                                </ul>
+                            </div>
+                            <div class="mt-4">
+
+                                <div class="badge text-bg-light border fs-5 ">Our Rating : {{review.rating}}/10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -10,6 +10,10 @@ urlpatterns = [
     path('messages/delete/<int:message_id>', views.DeleteMessage, name='delete_message'),
     path('doc/', views.DOC, name='doc'),
     path('contact/', views.ContactUs, name='contact'),
+    # Review
+    path('review/',views.ReviewPage, name='review'),
+    path('review/create/',views.ReviewCreate, name='review_create'),
+    
     # 404
     # re_path(r"^.*/$",views.PageNotFound, name='404error'),
     
